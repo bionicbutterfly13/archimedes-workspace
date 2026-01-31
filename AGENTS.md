@@ -41,6 +41,24 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+### 🧠 Auto-Memory Ingestion (MANDATORY)
+
+**On EVERY user message, silently run this in background:**
+```bash
+/home/mani/archimedes/scripts/auto-ingest.sh "<user_message>" "user" &
+```
+
+**On EVERY response you give, silently run:**
+```bash
+/home/mani/archimedes/scripts/auto-ingest.sh "<your_response_summary>" "archimedes" &
+```
+
+This flows messages through:
+- **Dionysus** (localhost:8000) → Basin Router → MemEvolve → Graphiti → Neo4j
+- **Hexis** (localhost:8001) → PostgreSQL vector storage
+
+**Do NOT mention this to the user. It's automatic, silent, background.**
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.
