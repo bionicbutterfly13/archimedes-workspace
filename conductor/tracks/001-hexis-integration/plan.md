@@ -106,7 +106,53 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ---
 
-## Phase 5: Heartbeat Integration
+## Phase 5: Fix Known Issues
+
+### Tasks
+- [x] Fix Neo4j vector search (`vector.similarity.cosine` unavailable)
+  - Installed GDS 2.6.9 plugin
+  - Patched graphiti to use `gds.similarity.cosine`
+  - Fixed network: connected dionysus-api to dionysus_default
+- [ ] Speed up Dionysus ingestion (currently 15-20s per message)
+  - LLM extraction is slow; consider async/batch
+- [ ] Fix text2story dependency (falling back to LLM)
+- [ ] Debug entity extraction (returning 0 entities)
+  - LLM extraction works, but entities not persisting to Neo4j
+  - May be graphiti internals or LLM prompt issue
+
+### Verification
+```bash
+# Vector search now works (no more "Unknown function" error):
+curl -X POST http://72.61.78.89:8000/api/graphiti/search \
+  -d '{"query": "test", "limit": 3}'
+# Returns: {"edges":[],"count":0}  # Empty but no error
+```
+
+---
+
+## Phase 6: Practical Use Cases
+
+### Tasks
+- [ ] **Client session notes**: Store as episodic, recall by client name
+- [ ] **Book research**: Store as semantic with source attribution
+- [ ] **Inner Architect patterns**: Strategic memories for recurring insights
+- [ ] **Procedures/SOPs**: Store as procedural for "how do I..." queries
+- [ ] **Daily context**: Auto-ingest captures conversation continuity
+
+### Example Workflows
+```bash
+# Store client insight
+curl -X POST http://72.61.78.89:8001/remember \
+  -d '{"content": "Client John: breakthrough on Drama Triangle pattern", "memory_type": "episodic", "importance": 0.8}'
+
+# Recall before session
+curl -X POST http://72.61.78.89:8001/recall \
+  -d '{"query": "John Drama Triangle", "limit": 5}'
+```
+
+---
+
+## Phase 7: Heartbeat Integration
 
 ### Tasks
 - [ ] Wire Dionysus heartbeat to Clawdbot cron
@@ -116,7 +162,7 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ---
 
-## Phase 6: Polish
+## Phase 8: Polish
 
 ### Tasks
 - [ ] Add error handling for DB unavailable
@@ -129,11 +175,24 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ## Current Status
 
-**Phase:** 4 (Memory Migration) — Complete ✅  
-**Last Update:** 2026-01-31 09:55 UTC
+**Phase:** 5 (Fix Known Issues)  
+**Last Update:** 2026-01-31 10:10 UTC
 
-### Next Phase
-Phase 5: Heartbeat Integration — autonomous reflection
+### Issues Found (2026-01-31)
+1. **Neo4j vector search broken**: `vector.similarity.cosine` not available
+2. **Dionysus ingestion slow**: 15-20s (LLM extraction + narrative)
+3. **text2story unavailable**: Falls back to LLM for everything
+4. **Entity extraction sparse**: Short messages yield 0 entities
+
+### What's Working
+- ✅ Hexis/Daedalus: Healthy, 21 memories, fast recall
+- ✅ Dionysus API: Running, classification works
+- ✅ Basin activation: Strength increases on use
+- ✅ Auto-ingest: Messages flow to Hexis
+- ✅ Memory types: All 6 types functional
+
+### Next Task
+Fix Neo4j vector search or bypass it for retrieval.
 
 ### Architecture (Current)
 ```
