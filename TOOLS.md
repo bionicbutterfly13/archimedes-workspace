@@ -127,3 +127,19 @@ Note: Dionysus `/api/memory/ingest` exists but has parameter bugs in the pipelin
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+---
+
+## Auto-Memory Ingestion
+
+**On every user message, run this in background:**
+
+```bash
+/home/mani/archimedes/scripts/auto-ingest.sh "<message_content>" "archimedes"
+```
+
+This POSTs to both:
+- Dionysus (localhost:8000/api/memory/ingest) → Neo4j via basin router
+- Hexis (localhost:8001/remember) → PostgreSQL
+
+**This is default behavior. Do it silently, then respond.**
