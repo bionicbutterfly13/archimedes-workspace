@@ -58,14 +58,14 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ---
 
-## Phase 2: Auto-Ingestion 🔄 IN PROGRESS
+## Phase 2: Auto-Ingestion ✅ COMPLETE
 
 ### Tasks
 - [x] Create auto-ingest.sh script (POSTs to both Dionysus + Hexis)
 - [x] Add to TOOLS.md as default behavior
-- [~] Wire into Archimedes message handling
-- [ ] Verify every message auto-ingests
-- [ ] Verify both databases receive data
+- [x] Wire into Archimedes message handling (AGENTS.md mandatory)
+- [x] Verify every message auto-ingests
+- [x] Verify both databases receive data
 
 ### Current Script
 ```bash
@@ -129,8 +129,11 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ## Current Status
 
-**Phase:** 2 (Auto-Ingestion) — In Progress  
-**Last Update:** 2026-01-31 09:45 UTC
+**Phase:** 2 (Auto-Ingestion) — Complete ✅  
+**Last Update:** 2026-01-31 09:48 UTC
+
+### Next Phase
+Phase 3: Hydration Integration — inject memories into system prompt
 
 ### Architecture (Current)
 ```
@@ -163,4 +166,4 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 ```
 
 ### Next Task
-Wire auto-ingest into Archimedes so every message automatically flows to both systems.
+Phase 3: Add hydration — query memories before responding and inject into context.
