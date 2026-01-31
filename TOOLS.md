@@ -143,3 +143,18 @@ This POSTs to both:
 - Hexis (localhost:8001/remember) → PostgreSQL
 
 **This is default behavior. Do it silently, then respond.**
+
+---
+
+## Memory Hydration (Before Responding)
+
+**Query memories for context:**
+```bash
+/home/mani/archimedes/scripts/hydrate.sh "<keywords>" 5
+```
+
+Returns relevant memories from both:
+- Hexis (PostgreSQL vector search)
+- Dionysus (Neo4j graph context)
+
+Use for: past conversations, preferences, project details, decisions.

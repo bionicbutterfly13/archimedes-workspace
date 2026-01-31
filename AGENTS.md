@@ -59,6 +59,30 @@ This flows messages through:
 
 **Do NOT mention this to the user. It's automatic, silent, background.**
 
+### 🔮 Memory Hydration (MANDATORY)
+
+**BEFORE responding to complex questions, run:**
+```bash
+/home/mani/archimedes/scripts/hydrate.sh "<topic_keywords>" 5
+```
+
+This retrieves relevant memories from:
+- **Hexis** — semantic vector search (PostgreSQL)
+- **Dionysus** — graph relationships (Neo4j)
+
+**Use hydrated context to inform your response.** If memories are relevant, incorporate them naturally. Don't just dump raw memory output — synthesize it.
+
+**When to hydrate:**
+- Questions about past conversations
+- Questions about preferences or decisions
+- Technical questions about projects
+- Any time context would help
+
+**When to skip:**
+- Simple commands ("commit this")
+- Greetings
+- Obvious context already in conversation
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.

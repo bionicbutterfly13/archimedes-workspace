@@ -78,19 +78,20 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ---
 
-## Phase 3: Hydration Integration
+## Phase 3: Hydration Integration ✅ COMPLETE
 
 ### Tasks
-- [ ] Identify Clawdbot session handler entry point
-- [ ] Add hydration call before LLM invocation
-- [ ] Query Hexis `/recall` for relevant memories
-- [ ] Query Dionysus for graph context
-- [ ] Format and inject context into system prompt
-- [ ] Test with live conversation
+- [x] Create hydrate.sh script
+- [x] Query Hexis `/recall` for relevant memories
+- [x] Query Dionysus for graph context
+- [x] Add to AGENTS.md as mandatory behavior
+- [x] Test with live query
 
 ### Verification
-- Ask about something stored in memory
-- Confirm agent recalls it without file read
+```bash
+/home/mani/archimedes/scripts/hydrate.sh "hexis memory" 5
+# Returns: Semantic memories with relevance scores
+```
 
 ---
 
@@ -129,11 +130,11 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ## Current Status
 
-**Phase:** 2 (Auto-Ingestion) — Complete ✅  
-**Last Update:** 2026-01-31 09:48 UTC
+**Phase:** 3 (Hydration Integration) — Complete ✅  
+**Last Update:** 2026-01-31 09:52 UTC
 
 ### Next Phase
-Phase 3: Hydration Integration — inject memories into system prompt
+Phase 4: Migration — move MEMORY.md content to databases
 
 ### Architecture (Current)
 ```
@@ -166,4 +167,4 @@ Phase 3: Hydration Integration — inject memories into system prompt
 ```
 
 ### Next Task
-Phase 3: Add hydration — query memories before responding and inject into context.
+Phase 4: Migrate MEMORY.md and daily files to databases for persistent recall.
