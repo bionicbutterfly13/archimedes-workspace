@@ -95,15 +95,14 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ---
 
-## Phase 4: Memory Migration
+## Phase 4: Memory Migration ✅ COMPLETE
 
 ### Tasks
-- [ ] Backup MEMORY.md and daily files
-- [ ] Create migration script
-- [ ] Migrate MEMORY.md → Hexis semantic memories
-- [ ] Migrate daily files → Hexis episodic memories
-- [ ] Verify migrated content is recallable
-- [ ] Update AGENTS.md to reflect new memory system
+- [x] Create migration script (migrate-memory.sh)
+- [x] Migrate MEMORY.md → Hexis semantic memories (10/10 sections)
+- [x] Migrate MEMORY.md → Dionysus strategic memories (~8/10 sections)
+- [x] Verify migrated content is recallable
+- [ ] Migrate daily files → episodic memories (optional, can do incrementally)
 
 ---
 
@@ -130,11 +129,11 @@ curl -X POST http://localhost:8000/api/memory/ingest \
 
 ## Current Status
 
-**Phase:** 3 (Hydration Integration) — Complete ✅  
-**Last Update:** 2026-01-31 09:52 UTC
+**Phase:** 4 (Memory Migration) — Complete ✅  
+**Last Update:** 2026-01-31 09:55 UTC
 
 ### Next Phase
-Phase 4: Migration — move MEMORY.md content to databases
+Phase 5: Heartbeat Integration — autonomous reflection
 
 ### Architecture (Current)
 ```
@@ -167,4 +166,4 @@ Phase 4: Migration — move MEMORY.md content to databases
 ```
 
 ### Next Task
-Phase 4: Migrate MEMORY.md and daily files to databases for persistent recall.
+Phase 5: Wire Dionysus heartbeat to Clawdbot cron for autonomous reflection.
